@@ -73,7 +73,8 @@ def can_find_using_where_clause_and_be_sorted
   # For this test return all movies released after 2002 and ordered by 
   # release date descending
   #__
-  Movie.where("release_date > ?", 2002).order(release_date: :desc)
+  # Movie.where("release_date > ?", 2002).order(release_date: :desc)
+  Movie.where("release_date > :release_date", :release_date => 2002).order('release_date DESC')
 end
 
 def can_be_found_updated_and_saved
@@ -84,7 +85,7 @@ def can_be_found_updated_and_saved
   #__
   Movie.find_by(title:"Awesome Flick").update(title: "Even Awesomer Flick")
   Movie.find_by(title:"Even Awesomer Flick").save
-  Movie.find_by(title:"Even Awesomer Flick").title
+  # Movie.find_by(title:"Even Awesomer Flick").title
   # 
   # did not work
   # updated_movie.update(title: "Even Awesomer Flick")
